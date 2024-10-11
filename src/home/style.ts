@@ -5,14 +5,15 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#333333",
+    padding: 24,
   },
   header: {
     backgroundColor: "#0D0D0D",
-    width: "100%",
-    height: 173,
     justifyContent: "center",
     flexDirection: "row",
     alignItems: "center",
+    margin: -24,
+    height: 173,
   },
   headerImageRocket: {
     marginRight: 10,
@@ -24,37 +25,59 @@ export const styles = StyleSheet.create({
     fontFamily: "Inter",
     lineHeight: 140,
   },
-  ViewAdd: {
-    flex: 1,
-    flexDirection: "row",
-  },
 
-  hehaderTextDo: {
+  haderTextDo: {
     color: "#5E60CE",
     fontSize: 36,
     fontWeight: "bold",
     fontFamily: "Inter",
   },
+  ViewAdd: {
+    width: "100%",
+    flexDirection: "row",
+    marginBottom: 36,
+  },
   textInput: {
-    width: "76%",
-    marginTop: -26,
+    flex: 1,
     height: 52,
-    marginLeft: 16,
+    marginRight: 10,
     padding: 10,
     borderRadius: 5,
     backgroundColor: "#262626",
     color: "#fff",
   },
   button: {
-    marginTop: -27,
     height: 52,
     width: 52,
-    marginLeft: 10,
-    padding: 10,
     borderRadius: 5,
     backgroundColor: "#1E6F9F",
-    flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+  },
+  areaInfor: {
+    flexDirection: "row",
+    marginBottom: 20,
+  },
+  areaInforCriadas: {
+    flex: 1,
+    fontSize: 16,
+    color: "#4EA8DE",
+    fontWeight: "bold",
+  },
+  areaInforConcluidas: {
+    fontSize: 16,
+    color: "#8284FA",
+    fontWeight: "bold",
+  },
+  listEmptyConteiner: {
+    alignItems: "center",
+    marginTop: 46,
+  },
+  listEmptyImage: {
+    marginBottom: 20,
+  },
+  listEmpty: {
+    color: "#808080",
+    fontSize: 16,
   },
 })
