@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import {
   View,
   Text,
@@ -6,6 +6,7 @@ import {
   TextInput,
   TouchableOpacity,
   FlatList,
+  Alert,
 } from "react-native"
 
 import { styles } from "./style"
@@ -13,14 +14,23 @@ import { styles } from "./style"
 import { Tarefa } from "../components/ListaTarefas"
 
 export function Home() {
-  const atividades = [""]
+  const [atividades, setAtividades] = useState<string[]>([])
+  const [tarefaAdicionada, setTarefaAdicionada] = useState("")
 
   function AdicionarTarefa() {
-    return console.log("Você Clicou!")
+    if (tarefaAdicionada == "") {
+      return Alert.alert(
+        "Adicione uma tarefa",
+        "Você deve adicionar uma tarefa."
+      )
+    }
+
+    setAtividades((prevState) => [...prevState, tarefaAdicionada])
+    setTarefaAdicionada("")
   }
 
-  function RemoverTarefa(nome: string) {
-    return console.log(`Você remoreu a tarefa ${nome}`)
+  function RemoverTarefa(taf: string) {
+    setAtividades(atividades.filter((atividade) => atividade !== taf))
   }
 
   function TarefaCompletada() {
@@ -42,6 +52,8 @@ export function Home() {
         <TextInput
           style={styles.textInput}
           placeholder="Adicione uma nova tarefa"
+          onChangeText={setTarefaAdicionada}
+          value={tarefaAdicionada}
         ></TextInput>
 
         <TouchableOpacity style={styles.button} onPress={AdicionarTarefa}>
@@ -55,14 +67,14 @@ export function Home() {
       </View>
 
       <FlatList
-        data={[]}
+        data={atividades}
         keyExtractor={(item) => item}
         renderItem={({ item }) => (
           <Tarefa
             key={item}
             taf={item}
             onCompletada={TarefaCompletada}
-            onRemove={() => RemoverTarefa("Primeira tareza")}
+            onRemove={() => RemoverTarefa(item)}
           />
         )}
         showsVerticalScrollIndicator={false}
@@ -73,10 +85,10 @@ export function Home() {
               style={styles.listEmptyImage}
             />
             <Text style={styles.listEmpty}>
-              Você nao tem tarefas cadastrada.
+              Você não tem tarefas cadastradas.
             </Text>
             <Text style={styles.listEmpty}>
-              Crie tarefas e organizes seus itens a fazer.
+              Crie tarefas e organize seus itens a fazer.
             </Text>
           </View>
         )}
